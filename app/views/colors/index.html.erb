@@ -1,0 +1,18 @@
+
+  <div class="container">
+      <div class="columns is-multiline">
+        <% @colors.each do |color| %>
+        <div class="column" id="color-<%= color.id %>"=>
+          <style>
+          #color-<%= color.id %> {background-color: <%= color.hex_value %>;}
+          </style>
+          <p class="title"><%= color.name %></p>
+        </div>
+     <% end %>
+      </div>
+  </div>
+
+
+
+
+
