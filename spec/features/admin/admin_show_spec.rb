@@ -7,10 +7,10 @@ describe 'an admin' do
       bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
 
       visit admin_path(admin)
-
+      save_and_open_page
       expect(page).to have_content("Name: #{admin.name}")
       expect(page).to have_content("Screen Name: #{admin.screen_name}")
-      expect(page).to have_content("contact: #{admin.email}")
+      expect(page).to have_content("Contact: #{admin.email}")
       expect(page).to have_content(bmp.name)
       expect(page).to have_content(bmp.hex_value)
     end
