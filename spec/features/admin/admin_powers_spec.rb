@@ -12,7 +12,6 @@ describe 'an admin' do
     fill_in :color_hex_value, with: new_color_hex_value
 
     click_on 'Create Color'
-    save_and_open_page
     
     expect(current_path).to eq(admin_path(admin))
     expect(page).to have_content(new_color_name)
