@@ -1,4 +1,7 @@
 class ColorsController < ApplicationController
+  def index
+  end
+  
   def new
     @admin = Admin.find(params[:admin_id])
     @color = Color.new
@@ -14,7 +17,14 @@ class ColorsController < ApplicationController
     end
   end
 
+  def destroy
+    require 'pry'; binding.pry
+    Color.find(params[:id]).destroy
+    redirect_to admin_path(admin)
+  end
+
   def color_params
     params.require(:color).permit(:name, :hex_value)
   end
+
 end
