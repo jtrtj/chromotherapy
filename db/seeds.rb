@@ -12,7 +12,7 @@ require 'csv'
 
 admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
 
-CSV.foreach('./lib/seeds/color_examples.csv', headers: true, header_converters: :symbol) do |color|
+CSV.foreach('db/data/color_examples.csv', headers: true, header_converters: :symbol) do |color|
   admin.colors.create(
     name:       color[:name],
     hex_value:  color[:hex_value]
