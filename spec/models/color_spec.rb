@@ -8,4 +8,8 @@ describe Color do
 
     it {should validate_uniqueness_of(:hex_value).case_insensitive}
   end
+  
+  context 'relationships' do
+    it {should belong_to(:admin)}
+  end
 end

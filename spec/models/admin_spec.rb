@@ -11,6 +11,10 @@ describe Admin do
     it {should validate_uniqueness_of(:email).case_insensitive}
   end
 
+  context 'relationships' do
+    it {should have_many(:colors)}
+  end
+
   context 'class methods' do
     it '#authenticate' do
       admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
