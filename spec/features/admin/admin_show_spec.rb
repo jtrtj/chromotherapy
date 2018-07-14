@@ -20,16 +20,12 @@ describe 'an admin' do
       bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
       color_name = 'SpringGreen'
       color_hex_value = '#00FF7F'
-      
+
       visit admin_path(admin)
 
-      fill_in :color_name, with: color_name
-      fill_in :color_hex_value, with: color_hex_value
-      click_on 'Add Color'
+      click_on 'Add a color to the Chromotherapy database'
 
-      expect(curren_path).to eq(admin_path(admin))
-      expect(page).to have_content(color_name)
-      expect(page).to have_content(color_hex_value)
+      expect(current_path).to eq(new_admin_color_path(admin))
     end
   end
 end

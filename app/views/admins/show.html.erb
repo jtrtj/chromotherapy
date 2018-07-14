@@ -1,11 +1,14 @@
 <body>
   <h1>Admin Profile</h1>
+
   <section>
     <p>Name: <%= @admin.name%></p>
     <p>Screen Name: <%= @admin.screen_name%></p>
     <p>Contact: <%= @admin.email%></p>
   </section>
+
   <section>
+    <h1><%= link_to 'Add a color to the Chromotherapy database', new_admin_color_path(@admin) %></h1>
     <h1>Colors Added by <%= @admin.name %>
     <table>
       <tr>
@@ -20,4 +23,5 @@
     <% end %>
     </table>
   </section>
+
 </body>
