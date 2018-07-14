@@ -7,14 +7,14 @@ describe 'an admin' do
     new_color_hex_value = '#00FF7F'
 
     visit new_admin_color_path(admin)
-
     
     fill_in :color_name, with: new_color_name
     fill_in :color_hex_value, with: new_color_hex_value
 
-    click_on 'Add Color'
-
-    expect(curret_path).to eq(admin_show_path(admin))
+    click_on 'Create Color'
+    save_and_open_page
+    
+    expect(current_path).to eq(admin_path(admin))
     expect(page).to have_content(new_color_name)
     expect(page).to have_content(new_color_hex_value)
   end
