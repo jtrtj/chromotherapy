@@ -16,9 +16,10 @@
         <th>Hex Value</th>
       </tr>
     <% @admin.colors.each do |color| %>
-      <tr>
+      <tr id="color-<%= color.id %>">
         <td><%= link_to color.name, color_path(color)%></td>
         <td bgcolor="<%= color.hex_value%>"><%= color.hex_value %></td>
+        <td><%= link_to 'Delete', color_path(color), method: 'DELETE' %></td>
       </tr>
     <% end %>
     </table>

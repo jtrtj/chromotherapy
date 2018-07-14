@@ -23,7 +23,7 @@ describe 'an admin' do
     spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
 
-    vist admin_path(admin)
+    visit admin_path(admin)
     
     within "#color-#{spring_green.id}" do
       click_on 'Delete'
