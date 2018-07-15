@@ -4,5 +4,8 @@ Rails.application.routes.draw do
     resources :colors
     resources :reactions
   end
+
   resources :colors, only: [:index, :show]
+  resources :reactions, only: [:index, :show]
+ 
 end

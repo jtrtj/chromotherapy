@@ -1,0 +1,7 @@
+<%= form_for [@admin, @reaction] do |f| %>
+  <%=f.label :word%>
+  <%=f.text_field :word%>
+  <%=f.label :definition%>
+  <%=f.text_field :definition%>
+  <%=f.submit%>
+<%end%>

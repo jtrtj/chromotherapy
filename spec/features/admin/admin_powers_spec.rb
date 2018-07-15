@@ -68,26 +68,26 @@ describe 'an admin' do
     fill_in :reaction_definition, with: new_reaction_definition
 
     click_on 'Create Reaction'
-
+   
     expect(current_path).to eq(admin_path(admin))
     expect(page).to have_content(new_reaction_word)
     expect(page).to have_content(new_reaction_definition)
   end
 
-  xit 'can delete reactions from db' do
+  it 'can delete reactions from db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
-    spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
-    bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
+    happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
+    sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
 
     visit admin_path(admin)
 
-    within "#color-#{spring_green.id}" do
+    within "#reaction-#{happy.id}" do
       click_on 'Delete'
     end
     
     expect(current_path).to eq(admin_path(admin))
-    expect(page).to_not have_content(spring_green.name)
-    expect(page).to_not have_content(spring_green.hex_value)
+    expect(page).to_not have_content(happy.name)
+    expect(page).to_not have_content(happy.definition)
   end
 
   xit 'can edit reactions db' do
