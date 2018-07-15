@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :admins do
     resources :colors
+    resources :reactions
   end
+
   resources :colors, only: [:index, :show]
+  resources :reactions, only: [:index, :show]
+ 
 end

@@ -56,4 +56,61 @@ describe 'an admin' do
     expect(page).to_not have_content('Spring Green')
     expect(page).to_not have_content('#00FF7F')
   end
+
+  it 'can add reactions to db' do
+    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
+    new_reaction_word = 'Happy'
+    new_reaction_definition = 'feeling or showing pleasure or contentment.'
+
+    visit new_admin_reaction_path(admin)
+    
+    fill_in :reaction_word, with: new_reaction_word
+    fill_in :reaction_definition, with: new_reaction_definition
+
+    click_on 'Create Reaction'
+   
+    expect(current_path).to eq(admin_path(admin))
+    expect(page).to have_content(new_reaction_word)
+    expect(page).to have_content(new_reaction_definition)
+  end
+
+  it 'can delete reactions from db' do
+    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
+    happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
+    sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
+
+    visit admin_path(admin)
+
+    within "#reaction-#{happy.id}" do
+      click_on 'Delete'
+    end
+    
+    expect(current_path).to eq(admin_path(admin))
+    expect(page).to_not have_content(happy.word)
+    expect(page).to_not have_content(happy.definition)
+  end
+
+  it 'can edit reactions in db' do
+    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
+    happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
+    sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
+    new_reaction_word = 'Overjoyed'
+    new_reaction_definition = 'extremely happy.'
+
+    visit admin_path(admin)
+
+    within "#reaction-#{happy.id}" do
+      click_on 'Edit'
+    end
+    
+    fill_in :reaction_word, with: new_reaction_word
+    fill_in :reaction_definition, with: new_reaction_definition
+    click_on 'Update Reaction'
+
+    expect(current_path).to eq(admin_path(admin))
+    expect(page).to have_content(new_reaction_word)
+    expect(page).to have_content(new_reaction_definition)
+    expect(page).to_not have_content('Happy')
+    expect(page).to_not have_content('feeling or showing pleasure or contentment.')
+  end
 end

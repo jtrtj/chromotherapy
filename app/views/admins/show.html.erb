@@ -26,4 +26,23 @@
     </table>
   </section>
 
+  <section>
+    <h1><%= link_to 'Add a reaction to the Chromotherapy database', new_admin_reaction_path(@admin) %></h1>
+    <h1>Reactions Added by <%= @admin.name %>
+    <table>
+      <tr>
+        <th>Word</th>
+        <th>Definition</th>
+      </tr>
+    <% @admin.reactions.each do |reaction| %>
+      <tr id="reaction-<%= reaction.id %>">
+        <td><%= link_to reaction.word, reaction_path(reaction)%></td>
+        <td><%= reaction.definition%></td>
+        <td><%= link_to 'Delete', admin_reaction_path(@admin, reaction), method: 'DELETE', data: {confirm: "Really delete #{reaction.word}"}  %></td>
+        <td><%= link_to 'Edit', edit_admin_reaction_path(@admin, reaction), method: 'GET' %></td>
+      </tr>
+    <% end %>
+    </table>
+  </section>
+
 </body>
