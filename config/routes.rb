@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   resources :admins do
     resources :colors
   end
-  resources :colors
+  resources :colors, only: [:index, :show]
 end
