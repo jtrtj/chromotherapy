@@ -90,26 +90,27 @@ describe 'an admin' do
     expect(page).to_not have_content(happy.definition)
   end
 
-  xit 'can edit reactions db' do
+  it 'can edit reactions db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
-    spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
-    new_color_name = 'GR8 COLOR'
-    new_color_hex_value = '#FF1493'
+    happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
+    sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
+    new_reaction_word = 'Overjoyed'
+    new_reaction_definition = 'extremely happy.'
 
     visit admin_path(admin)
 
-    within "#color-#{spring_green.id}" do
+    within "#reaction-#{happy.id}" do
       click_on 'Edit'
     end
     
-    fill_in :color_name, with: new_color_name
-    fill_in :color_hex_value, with: new_color_hex_value
-    click_on 'Update Color'
+    fill_in :reaction_word, with: new_reaction_word
+    fill_in :reaction_definition, with: new_reaction_definition
+    click_on 'Update Reaction'
 
     expect(current_path).to eq(admin_path(admin))
-    expect(page).to have_content(new_color_name)
-    expect(page).to have_content(new_color_hex_value)
-    expect(page).to_not have_content('Spring Green')
-    expect(page).to_not have_content('#00FF7F')
+    expect(page).to have_content(new_reaction_word)
+    expect(page).to have_content(new_reaction_definition)
+    expect(page).to_not have_content('Happy')
+    expect(page).to_not have_content('feeling or showing pleasure or contentment.')
   end
 end

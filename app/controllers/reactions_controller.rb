@@ -15,6 +15,24 @@ class ReactionsController < ApplicationController
     end
   end
 
+  def edit
+    @admin = Admin.find(params[:admin_id])
+    @reaction = Reaction.find(params[:id])
+  end
+
+  def update
+    @admin = Admin.find(params[:admin_id])
+    @reaction = Reaction.find(params[:id])
+    @reaction.update(reaction_params)
+    if @reaction.save
+      redirect_to admin_path(@admin)
+      flash.notice = "Reaction has been updated."
+    else
+      flash.notice = "Reactions cannot be duplicated."
+      render :edit
+    end
+  end
+
   def destroy
     admin = Admin.find(params[:admin_id])
     reaction = Reaction.find(params[:id])
