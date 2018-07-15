@@ -3,5 +3,6 @@ class Reaction < ApplicationRecord
   validates :word, presence: true, uniqueness: { case_sensitive: false }
 
   belongs_to :admin
-  
+  has_many :sessions
+  has_many :colors, through: :sessions
 end
