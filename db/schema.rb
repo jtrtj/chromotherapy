@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180714184208) do
+ActiveRecord::Schema.define(version: 20180715185629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,5 +33,15 @@ ActiveRecord::Schema.define(version: 20180714184208) do
     t.index ["admin_id"], name: "index_colors_on_admin_id"
   end
 
+  create_table "reactions", force: :cascade do |t|
+    t.string "word"
+    t.string "definition"
+    t.bigint "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_reactions_on_admin_id"
+  end
+
   add_foreign_key "colors", "admins"
+  add_foreign_key "reactions", "admins"
 end
