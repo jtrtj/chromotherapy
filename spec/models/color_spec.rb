@@ -11,5 +11,6 @@ describe Color do
   
   context 'relationships' do
     it {should belong_to(:admin)}
+    it {should have_many(:reactions).through(:sessions)}
   end
 end
