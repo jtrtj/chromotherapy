@@ -19,8 +19,10 @@ class ColorsController < ApplicationController
   end
 
   def destroy
-    Color.find(params[:id]).destroy
-    redirect_to admin_path(params[:admin_id])
+    admin = Admin.find(params[:admin_id])
+    color = Color.find(params[:id])
+    color.destroy
+    redirect_to admin_path(admin)
   end
 
   def color_params
