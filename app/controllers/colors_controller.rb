@@ -49,6 +49,8 @@ class ColorsController < ApplicationController
     flash.notice = "#{color.name} has been removed chromotherapy"
   end
 
+  private 
+  
   def color_params
     params.require(:color).permit(:name, :hex_value)
   end

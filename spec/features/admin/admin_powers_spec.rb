@@ -86,7 +86,7 @@ describe 'an admin' do
     end
     
     expect(current_path).to eq(admin_path(admin))
-    expect(page).to_not have_content(happy.name)
+    expect(page).to_not have_content(happy.word)
     expect(page).to_not have_content(happy.definition)
   end
 
