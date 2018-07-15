@@ -4,6 +4,7 @@ class Admin < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
   has_many :colors
+  has_many :reactions
   
   def self.authenticate(screen_name, password)
     # if email and password correspond to a valid user, return that user

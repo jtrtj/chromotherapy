@@ -13,6 +13,7 @@ describe Admin do
 
   context 'relationships' do
     it {should have_many(:colors)}
+    it {should have_many(:reactions)}
   end
 
   context 'class methods' do
