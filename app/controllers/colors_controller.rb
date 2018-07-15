@@ -23,6 +23,17 @@ class ColorsController < ApplicationController
     @color = Color.find(params[:id])
   end
 
+  def update
+    admin = Admin.find(params[:admin_id])
+    color = Color.find(params[:id])
+    color.update(color_params)
+    if color.save
+      redirect_to admin_path(admin)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     admin = Admin.find(params[:admin_id])
     color = Color.find(params[:id])

@@ -46,13 +46,14 @@ describe 'an admin' do
       click_on 'Edit'
     end
     
-    save_and_open_page
     fill_in :color_name, with: new_color_name
     fill_in :color_hex_value, with: new_color_hex_value
     click_on 'Update Color'
 
     expect(current_path).to eq(admin_path(admin))
-    expect(page).to_not have_content(new_color_name)
-    expect(page).to_not have_content(new_color_hex_value)
+    expect(page).to have_content(new_color_name)
+    expect(page).to have_content(new_color_hex_value)
+    expect(page).to_not have_content('Spring Green')
+    expect(page).to_not have_content('#00FF7F')
   end
 end
