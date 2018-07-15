@@ -3,6 +3,9 @@ class ColorsController < ApplicationController
     @colors = Color.all
   end
   
+  def show
+  end
+  
   def new
     @admin = Admin.find(params[:admin_id])
     @color = Color.new
