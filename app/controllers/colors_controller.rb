@@ -19,9 +19,8 @@ class ColorsController < ApplicationController
   end
 
   def destroy
-    require 'pry'; binding.pry
     Color.find(params[:id]).destroy
-    redirect_to admin_path(admin)
+    redirect_to admin_path(params[:admin_id])
   end
 
   def color_params

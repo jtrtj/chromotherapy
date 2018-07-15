@@ -23,13 +23,13 @@ describe 'an admin' do
     spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
 
-    visit colors_path
-    
+    visit admin_path(admin)
+
     within "#color-#{spring_green.id}" do
       click_on 'Delete'
     end
     
-    expect(current_path).to eq(colors_path)
+    expect(current_path).to eq(admin_path(admin))
     expect(page).to_not have_content(spring_green.name)
     expect(page).to_not have_content(spring_green.hex_value)
   end
