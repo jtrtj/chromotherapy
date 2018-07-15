@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180715185629) do
+ActiveRecord::Schema.define(version: 20180715222919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20180715185629) do
     t.index ["admin_id"], name: "index_reactions_on_admin_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "color_id"
+    t.bigint "reaction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["color_id"], name: "index_sessions_on_color_id"
+    t.index ["reaction_id"], name: "index_sessions_on_reaction_id"
+  end
+
   add_foreign_key "colors", "admins"
   add_foreign_key "reactions", "admins"
+  add_foreign_key "sessions", "colors"
+  add_foreign_key "sessions", "reactions"
 end
