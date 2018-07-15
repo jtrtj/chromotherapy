@@ -90,7 +90,7 @@ describe 'an admin' do
     expect(page).to_not have_content(happy.definition)
   end
 
-  it 'can edit reactions db' do
+  it 'can edit reactions in db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
     sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
