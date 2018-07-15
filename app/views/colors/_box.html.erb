@@ -12,7 +12,7 @@
                     {
                         console.log("User allows fullscreen");
                    
-                        var element = document.getElementById("box");
+                        var element = document.getElementById("color-box");
                         //requestFullscreen is used to display an element in full screen mode.
                         if("requestFullscreen" in element)
                         {
@@ -130,6 +130,6 @@
         </style>
     </head>
     <body>
-        <div id="box" onclick="full_screen();"></div>
+        <div id="color-box" onclick="full_screen();"></div>
     </body>
 </html>
