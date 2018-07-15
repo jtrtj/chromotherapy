@@ -19,7 +19,7 @@
       <tr id="color-<%= color.id %>">
         <td><%= link_to color.name, color_path(color)%></td>
         <td bgcolor="<%= color.hex_value%>"><%= color.hex_value %></td>
-        <td><%= link_to 'Delete', admin_color_path(@admin, color), method: 'DELETE' %></td>
+        <td><%= link_to 'Delete', admin_color_path(@admin, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"}  %></td>
         <td><%= link_to 'Edit', edit_admin_color_path(@admin, color), method: 'GET' %></td>
       </tr>
     <% end %>

@@ -13,6 +13,7 @@ class ColorsController < ApplicationController
     color = admin.colors.create!(color_params)
     if color.save
       redirect_to admin_path(admin)
+      flash.notice = "#{color.name} has been added to chromotherapy."
     else
       render :new
     end
@@ -29,6 +30,7 @@ class ColorsController < ApplicationController
     color.update(color_params)
     if color.save
       redirect_to admin_path(admin)
+      flash.notice = "#{color.name} has been updated."
     else
       render :edit
     end
@@ -39,6 +41,7 @@ class ColorsController < ApplicationController
     color = Color.find(params[:id])
     color.destroy
     redirect_to admin_path(admin)
+    flash.notice = "#{color.name} has been removed chromotherapy"
   end
 
   def color_params
