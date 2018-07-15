@@ -18,6 +18,11 @@ class ColorsController < ApplicationController
     end
   end
 
+  def edit
+    @admin = Admin.find(params[:admin_id])
+    @color = Color.find(params[:id])
+  end
+
   def destroy
     admin = Admin.find(params[:admin_id])
     color = Color.find(params[:id])
