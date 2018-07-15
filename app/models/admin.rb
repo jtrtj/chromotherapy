@@ -3,6 +3,8 @@ class Admin < ApplicationRecord
   validates :screen_name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+  has_many :colors
+  
   def self.authenticate(screen_name, password)
     # if email and password correspond to a valid user, return that user
     if Admin.where(screen_name: screen_name, password: password).first

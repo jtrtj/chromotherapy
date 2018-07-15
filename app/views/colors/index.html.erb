@@ -1,0 +1,19 @@
+
+  <div class="container">
+      <div class="columns is-multiline">
+        <% @colors.each do |color| %>
+        <div class="column" id="color-<%= color.id %>"=>
+          <style>
+          #color-<%= color.id %> {background-color: <%= color.hex_value %>;
+                                  height: 200px;}
+          </style>
+          <p class="title has-text-white has-text-centered"><%= color.name %></p>
+        </div>
+     <% end %>
+      </div>
+  </div>
+
+
+
+
+
