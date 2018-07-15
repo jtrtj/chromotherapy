@@ -9,11 +9,11 @@ class ColorsController < ApplicationController
   end
 
   def create
-    admin = Admin.find(params[:admin_id])
-    color = admin.colors.create!(color_params)
-    if color.save
-      redirect_to admin_path(admin)
-      flash.notice = "#{color.name} has been added to chromotherapy."
+    @admin = Admin.find(params[:admin_id])
+    @color = @admin.colors.create!(color_params)
+    if @color.save
+      redirect_to admin_path(@admin)
+      flash.notice = "#{@color.name} has been added to chromotherapy."
     else
       render :new
     end
@@ -25,13 +25,14 @@ class ColorsController < ApplicationController
   end
 
   def update
-    admin = Admin.find(params[:admin_id])
-    color = Color.find(params[:id])
-    color.update(color_params)
-    if color.save
-      redirect_to admin_path(admin)
-      flash.notice = "#{color.name} has been updated."
+    @admin = Admin.find(params[:admin_id])
+    @color = Color.find(params[:id])
+    @color.update(color_params)
+    if @color.save
+      redirect_to admin_path(@admin)
+      flash.notice = "#{@color.name} has been updated."
     else
+      flash.notice = "Colors cannot be duplicated."
       render :edit
     end
   end
