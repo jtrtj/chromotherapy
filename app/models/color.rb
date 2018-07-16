@@ -3,6 +3,6 @@ class Color < ApplicationRecord
   validates :hex_value, presence: true, uniqueness: { case_sensitive: false }
 
   belongs_to :admin
-  has_many :sessions
-  has_many :reactions, through: :sessions
+  has_many :surveys
+  has_many :reactions, through: :surveys
 end

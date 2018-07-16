@@ -16,7 +16,7 @@ describe 'a user' do
       admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
       bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
       happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
-      session = bmp.sessions.create!(reaction_id: happy.id, )
+      survey = bmp.surveys.create!(reaction_id: happy.id, )
 
       visit color_path(bmp)
 

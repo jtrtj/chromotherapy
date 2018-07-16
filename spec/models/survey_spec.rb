@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Session do
+describe Survey do
   context 'validations' do
     it {should validate_presence_of(:color_id)}
     it {should validate_presence_of(:reaction_id)}

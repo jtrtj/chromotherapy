@@ -42,17 +42,17 @@ ActiveRecord::Schema.define(version: 20180715222919) do
     t.index ["admin_id"], name: "index_reactions_on_admin_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "surveys", force: :cascade do |t|
     t.bigint "color_id"
     t.bigint "reaction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["color_id"], name: "index_sessions_on_color_id"
-    t.index ["reaction_id"], name: "index_sessions_on_reaction_id"
+    t.index ["color_id"], name: "index_surveys_on_color_id"
+    t.index ["reaction_id"], name: "index_surveys_on_reaction_id"
   end
 
   add_foreign_key "colors", "admins"
   add_foreign_key "reactions", "admins"
-  add_foreign_key "sessions", "colors"
-  add_foreign_key "sessions", "reactions"
+  add_foreign_key "surveys", "colors"
+  add_foreign_key "surveys", "reactions"
 end
