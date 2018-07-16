@@ -9,10 +9,12 @@ describe 'login workflow' do
 
     expect(current_path).to eq(login_path)
 
-    fill_in :email, with: user.username
+    fill_in :email, with: user.email
     fill_in :password, with: user.password
 
-    click_on 'log in'
+    within '.box' do
+      click_on 'log in'
+    end
 
     expect(current_path).to eq(user_path(user))
     expect(page).to have_content('log out')
