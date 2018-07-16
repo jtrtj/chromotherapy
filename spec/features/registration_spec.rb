@@ -15,8 +15,10 @@ describe 'registration work-flow' do
     fill_in :user_email, with: email
     fill_in :user_name, with: name
     fill_in :user_password, with: '12345'
-
-    click_on 'sign up'
+    
+    within '.box' do
+      click_on 'sign up'
+    end
 
     expect(current_path).to eq(user_path(User.last))
     expect(page).to have_content("Welcome, #{username}!")
