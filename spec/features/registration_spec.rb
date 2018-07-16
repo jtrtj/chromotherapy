@@ -4,6 +4,7 @@ describe 'registration work-flow' do
 
   it 'submits a registration form successfully' do
     email = 'megan_fox@hotmail.com'
+    name = 'Megan Fox'
 
     visit root_path
 
@@ -12,6 +13,7 @@ describe 'registration work-flow' do
     expect(current_path).to eq(new_user_path)
 
     fill_in :user_email, with: email
+    fill_in :user_name, with: name
     fill_in :user_password, with: '12345'
 
     click_on 'sign up'
