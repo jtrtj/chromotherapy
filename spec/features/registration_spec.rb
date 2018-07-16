@@ -21,24 +21,28 @@ describe 'registration work-flow' do
     end
 
     expect(current_path).to eq(user_path(User.last))
-    expect(page).to have_content("Welcome, #{username}!")
+    expect(page).to have_content("Welcome, #{name}!")
   end
 
-  xit 'submits a registration form with duplicate username' do
-    username = 'pumped_2_be_here'
-    User.create(username: username, password: 'gfdsadfg')
+  it 'submits a registration form with duplicate email' do
+    email = 'megan_fox@hotmail.com'
+    name = 'Megan Fox'
+    User.create(email: email, name: name, password: 'gfdsadfg')
     user_count = User.count
 
-    visit '/'
+    visit root_path
 
-    click_on 'Sign up to be a new User'
+    click_on 'sign up'
 
     expect(current_path).to eq(new_user_path)
 
-    fill_in :user_username, with: username
+    fill_in :user_email, with: email
+    fill_in :user_name, with: name
     fill_in :user_password, with: '12345'
 
-    click_on 'Create User'
+    within '.box' do
+      click_on 'sign up'
+    end
 
     expect(User.count).to eq(user_count)
     expect(current_path).to eq(users_path)
