@@ -14,3 +14,4 @@ describe Color do
     it {should have_many(:reactions).through(:sessions)}
   end
 end
+
