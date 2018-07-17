@@ -12,29 +12,31 @@ describe 'login workflow' do
     fill_in :email, with: user.email
     fill_in :password, with: user.password
 
-    within '.box' do
-      click_on 'log in'
+    within '#log-in-button' do
+      click_button 'log in'
     end
-
+    
     expect(current_path).to eq(user_path(user))
     expect(page).to have_content('log out')
     expect(page).to_not have_content('log in')
   end
 
-  xit 'allows registered users to log out' do
-    user = User.create(username: 'KeeganTwoWords', password: 'test')
+  it 'allows registered users to log out' do
+    user = User.create(email: 'jt@r.com', name: 'j', password: 'test')
 
     visit root_path
-    click_on 'I already have an account'
+    click_on 'log in'
 
     expect(current_path).to eq(login_path)
 
-    fill_in :username, with: user.username
+    fill_in :email, with: user.email
     fill_in :password, with: user.password
 
-    click_on 'Log In'
+    within '#log-in-button' do
+      click_button 'log in'
+    end
 
-    click_on 'Log Out'
+    click_on 'log out'
     expect(current_path).to eq(root_path)
   end
 end

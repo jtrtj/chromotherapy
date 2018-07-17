@@ -7,23 +7,8 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
- <nav class="navbar is-black" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <!-- navbar items, navbar burger... -->
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start">
-      <div class="navbar-item"><%= link_to 'Colors', colors_path %></div>
-    </div>
-    <div class="navbar-end">
-      </div class="navbar-item"><%= link_to 'sign up', new_user_path %></div>
-    </div>
-    <div class="navbar-end">
-      </div class="navbar-item"><%= link_to 'log in', login_path %></div>
-    </div>
-  </div>
-</nav>
   <body>
+    <%= render partial: '/layouts/nav' %>
     <%= yield %>
   </body>
 </html>

@@ -1,5 +1,4 @@
-<html>
-    <head>
+
         <script type="text/javascript">
 
             function full_screen()
@@ -81,29 +80,29 @@
             document.addEventListener("MSFullscreenError", function(){console.log("Full screen failed");});
         </script>
         <style type="text/css">
-            div
+            #color-box
             {
                 height: 300px;
                 width: 300px;
                 background-color: <%= @color.hex_value %>;
             }
 
-            div:-webkit-full-screen
+            #color-box:-webkit-full-screen
             {
                 background-color: <%= @color.hex_value %>;
             }
              
-            div:-moz-full-screen
+            #color-box:-moz-full-screen
             {
                 background-color: <%= @color.hex_value %>;
             }
              
-            div:-ms-fullscreen
+            #color-box:-ms-fullscreen
             {
                 background-color: <%= @color.hex_value %>;
             }
              
-            div:fullscreen
+            #color-box:fullscreen
             {
                 background-color: <%= @color.hex_value %>;
             }
@@ -128,8 +127,6 @@
             }
 
         </style>
-    </head>
-    <body>
+    
         <div id="color-box" onclick="full_screen();"></div>
-    </body>
-</html>
+  

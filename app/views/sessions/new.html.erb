@@ -2,23 +2,23 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">New Account</h3>
+                    <h3 class="title has-text-grey">Log In</h3>
                     <p class="subtitle has-text-grey">...</p>
                     <div class="box">
                         <%= form_tag login_path do %>
                             <div class="field">
                                 <div class="control">
                                   <%= label_tag :email %>
-                                  <%= text_field_tag :email, class: "input is-large",placeholder: "Your Email"  %>
+                                  <%= text_field_tag :email, "", class: "input is-large" %>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
                                   <%= label_tag :password %>
-                                  <%= password_field_tag :password, class: "input is-large", placeholder: "password"  %>
+                                  <%= password_field_tag :password, "", class: "input is-large" %>
                                 </div>
                             </div>
-                            <%= submit_tag 'log in', class: "button is-block is-info is-large is-fullwidth" %>
+                            <div id="log-in-button"><%= submit_tag 'log in', class: "button is-block is-info is-large is-fullwidth" %></div>
                         <% end %>
                     </div>
                 </div>
