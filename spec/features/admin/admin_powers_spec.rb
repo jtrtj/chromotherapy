@@ -1,19 +1,24 @@
 require 'rails_helper'
 
 describe 'an admin' do
+  before(:each) do
+    admin = User.create(email: 'sdfg', name: 'uytrew', password: 'trew', role: 1)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+  end
+
   it 'can add colors to db' do
-    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     new_color_name = 'Spring Green'
     new_color_hex_value = '#00FF7F'
 
-    visit new_admin_color_path(admin)
+    visit colors_path
+    click_on 'add color to database'
     
     fill_in :color_name, with: new_color_name
     fill_in :color_hex_value, with: new_color_hex_value
 
     click_on 'Create Color'
 
-    expect(current_path).to eq(admin_path(admin))
+    expect(current_path).to eq(color_path(Color.last))
     expect(page).to have_content(new_color_name)
     expect(page).to have_content(new_color_hex_value)
   end

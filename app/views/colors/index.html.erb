@@ -1,4 +1,11 @@
 
+  <% if current_user.admin? %>
+  <div class="hero">
+    <div class="hero-body">
+      <%= button_to  "add color to database", new_admin_color_path, class: "button" %>
+    </div>
+  </div>
+  <%end%>
   <div class="container">
       <div class="columns is-multiline">
         <% @colors.each do |color| %>

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   
   resources :users, only: [:new, :create, :show]
 
+  namespace :admin do
+    resources :colors, only: [:new]
+  end
+
   resources :admins do
     resources :colors
     resources :reactions
