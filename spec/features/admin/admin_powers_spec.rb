@@ -60,7 +60,7 @@ describe 'an admin' do
     expect(page).to_not have_content('#00FF7F')
   end
 
-  xit 'can add reactions to db' do
+  it 'can add reactions to db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     new_reaction_word = 'Happy'
     new_reaction_definition = 'feeling or showing pleasure or contentment.'
