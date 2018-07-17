@@ -5,7 +5,7 @@ describe 'a registered user' do
     @admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     @bmp = @admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
     @happy = @admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
-    @user = User.new(email: 'test', name: 'tester', password: 'secret')
+    @user = User.create(email: 'test', name: 'tester', password: 'secret')
 
     visit root_path
     click_on 'log in'
@@ -16,13 +16,14 @@ describe 'a registered user' do
     within '#log-in-button' do
       click_button 'log in'
     end
+   
   end
 
   context 'visiting color show page' do
     it 'will see a form to fill out a survey about the color' do
       visit color_path(@bmp)
 
-      select(@happy.word, from: :survey_reaction)
+      select(@happy.word, from: :survey_reaction_id)
 
       click_on 'submit'
 

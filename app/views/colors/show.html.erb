@@ -18,7 +18,7 @@
                 <th>Word</th>
                 <th>Definition</th>
               </tr>
-              <% @color.reactions.each do |reaction| %>
+              <% @color.reactions.distinct.each do |reaction| %>
               <tr id="reaction-<%= reaction.id %>">
                 <td><%= link_to reaction.word, reaction_path(reaction)%></td>
                 <td><%= reaction.definition%></td>
@@ -26,11 +26,11 @@
               <% end %>
             </table>
           </section>
-
+          <% if current_user %>
           <section class="column ">
             <%= render partial: './surveys/form' %>
           </section>
-
+          <% end %>
         </div>
       </div>
     </div>

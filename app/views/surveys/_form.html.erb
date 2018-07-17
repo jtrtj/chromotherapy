@@ -1,5 +1,5 @@
 <%= form_for [@color, @survey] do |f| %>
-  <%= f.label :reaction %>
-  <%= f.collection_select :reaction, @reactions,:id,:word, include_blank: true %>
+  <%= f.label :reaction_id %>
+  <%= f.collection_select :reaction_id, @reactions,:id,:word, include_blank: true %>
   <%= f.submit 'submit'%>
 <% end %>
