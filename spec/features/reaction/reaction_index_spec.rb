@@ -15,4 +15,17 @@ describe 'reactions index' do
       expect(page).to_not have_content('add reaction to database')
     end
   end
+  context 'an admin visiting reactions index' do
+    it 'will see all reactions and will see a button to add a reaction' do
+      admin = User.create(email: 'sdfg', name: 'uytrew', password: 'trew', role: 1)
+      reaction_1 = admin.reactions.create(word: 'sdfgh', definition: 'hgfds')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit reactions_path
+
+      expect(page).to have_content(reaction_1.word)
+      expect(page).to have_content(reaction_1.definition)
+      expect(page).to have_content('add reaction to database')
+    end
+  end
 end
