@@ -1,0 +1,25 @@
+
+  <% if current_user.admin? %>
+  <div class="hero">
+    <div class="hero-body">
+      <%= link_to  "add reaction to database", new_user_reaction_path(current_user) %>
+    </div>
+  </div>
+  <%end%>
+  <div class="container">
+      <div class="columns is-multiline">
+        <% @reactions.each do |reaction| %>
+          <%= link_to reaction_path(reaction) do %>
+          <div class="column box has-text-centered" id="reaction-<%= reaction.id %>"=>
+            <p class="title"><%= reaction.word %></p>
+            <p class="sub-title"><%= reaction.definition %></p>
+          </div>
+          <% end %>
+     <% end %>
+      </div>
+  </div>
+
+
+
+
+
