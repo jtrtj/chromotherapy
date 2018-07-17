@@ -1,6 +1,10 @@
 class ReactionsController < ApplicationController
   before_action :current_admin?,  only: [:new, :create, :edit, :update, :destroy]
 
+  def index
+    @reactions = Reaction.all
+  end
+
   def new
     @reaction = Reaction.new
   end
