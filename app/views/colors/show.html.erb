@@ -2,15 +2,16 @@
   <div class="hero-body">
       <div class="container">
         <div class="columns is-vertical">
-          <section class="column ">
+
+          <section class="column">
             <h1 class="title"><%= @color.name %></h1>
             <p class="sub-title"><%= @color.hex_value %></p>
           </section>
-          <section class="column  content-is-centered">
+          <section class="column content-is-centered">
             <%= render partial: 'box'%>
           </section>
 
-          <section class="column ">
+          <section class="column">
             <h1>Reactions</h1>
             <table>
               <tr>
@@ -25,6 +26,11 @@
               <% end %>
             </table>
           </section>
+
+          <section class="column ">
+            <%= render partial: './surveys/form' %>
+          </section>
+
         </div>
       </div>
     </div>
