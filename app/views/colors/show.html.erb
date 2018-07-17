@@ -1,23 +1,31 @@
-<section>
-  <h1 class="title"><%= @color.name %></h1>
-  <p class="sub-title"><%= @color.hex_value %></p>
-</section>
-<section>
-  <%= render partial: 'box'%>
-</section>
+<section class="hero is-white is-fullheight">
+  <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vertical">
+          <section class="column ">
+            <h1 class="title"><%= @color.name %></h1>
+            <p class="sub-title"><%= @color.hex_value %></p>
+          </section>
+          <section class="column  content-is-centered">
+            <%= render partial: 'box'%>
+          </section>
 
-<section>
-  <h1>Reactions</h1>
-  <table>
-    <tr>
-      <th>Word</th>
-      <th>Definition</th>
-    </tr>
-    <% @color.reactions.each do |reaction| %>
-    <tr id="reaction-<%= reaction.id %>">
-      <td><%= link_to reaction.word, reaction_path(reaction)%></td>
-      <td><%= reaction.definition%></td>
-    </tr>
-    <% end %>
-  </table>
+          <section class="column ">
+            <h1>Reactions</h1>
+            <table>
+              <tr>
+                <th>Word</th>
+                <th>Definition</th>
+              </tr>
+              <% @color.reactions.each do |reaction| %>
+              <tr id="reaction-<%= reaction.id %>">
+                <td><%= link_to reaction.word, reaction_path(reaction)%></td>
+                <td><%= reaction.definition%></td>
+              </tr>
+              <% end %>
+            </table>
+          </section>
+        </div>
+      </div>
+    </div>
 </section>

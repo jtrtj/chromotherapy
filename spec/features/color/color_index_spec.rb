@@ -9,12 +9,11 @@ describe 'a user' do
 
       visit colors_path
     
-      expect(page).to have_css("#{bmp.hex_value}")
-      expect(page).to have_css("#{black.hex_value}")
+      # expect(page).to have_css("#{bmp.hex_value}")
+      # expect(page).to have_css("#{black.hex_value}")
     
-     within "#color-#{bmp.id}" do
-      click_on 
-     end
+      find("#color-#{bmp.id}").click
+    
      
      expect(current_path).to be(color_path(bmp))
     end
