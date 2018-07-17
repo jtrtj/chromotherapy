@@ -1,4 +1,7 @@
 class ColorsController < ApplicationController
+  
+  before_action :current_admin?,  only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @colors = Color.all
   end
@@ -10,15 +13,15 @@ class ColorsController < ApplicationController
   end
 
   def new
-    @admin = Admin.find(params[:admin_id])
+    @user = User.find(params[:user_id])
     @color = Color.new
   end
 
   def create
-    @admin = Admin.find(params[:admin_id])
-    @color = @admin.colors.create!(color_params)
+    @user = User.find(params[:user_id])
+    @color = @user.colors.create!(color_params)
     if @color.save
-      redirect_to admin_path(@admin)
+      redirect_to color_path(@color)
       flash.notice = "#{@color.name} has been added to chromotherapy."
     else
       render :new

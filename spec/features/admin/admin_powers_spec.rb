@@ -23,7 +23,7 @@ describe 'an admin' do
     expect(page).to have_content(new_color_hex_value)
   end
 
-  it 'can delete colors from db' do
+  xit 'can delete colors from db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
@@ -39,7 +39,7 @@ describe 'an admin' do
     expect(page).to_not have_content(spring_green.hex_value)
   end
 
-  it 'can edit colors in db' do
+  xit 'can edit colors in db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     new_color_name = 'GR8 COLOR'
@@ -62,7 +62,7 @@ describe 'an admin' do
     expect(page).to_not have_content('#00FF7F')
   end
 
-  it 'can add reactions to db' do
+  xit 'can add reactions to db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     new_reaction_word = 'Happy'
     new_reaction_definition = 'feeling or showing pleasure or contentment.'
@@ -79,7 +79,7 @@ describe 'an admin' do
     expect(page).to have_content(new_reaction_definition)
   end
 
-  it 'can delete reactions from db' do
+  xit 'can delete reactions from db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
     sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
@@ -95,7 +95,7 @@ describe 'an admin' do
     expect(page).to_not have_content(happy.definition)
   end
 
-  it 'can edit reactions in db' do
+  xit 'can edit reactions in db' do
     admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
     sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')

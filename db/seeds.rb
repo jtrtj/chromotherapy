@@ -10,7 +10,7 @@ require 'csv'
 
 
 
-admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
+admin = User.create!(name: 'John', email: 'jtr022@gmail.com', password: 'cool', role: 1)
 
 CSV.foreach('db/data/color_examples.csv', headers: true, header_converters: :symbol) do |color|
   admin.colors.create(

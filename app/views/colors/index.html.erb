@@ -2,7 +2,7 @@
   <% if current_user.admin? %>
   <div class="hero">
     <div class="hero-body">
-      <%= button_to  "add color to database", new_admin_color_path, class: "button" %>
+      <%= link_to  "add color to database", new_user_color_path(current_user) %>
     </div>
   </div>
   <%end%>
