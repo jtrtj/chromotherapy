@@ -29,16 +29,14 @@ class ColorsController < ApplicationController
   end
 
   def edit
-    @admin = Admin.find(params[:admin_id])
     @color = Color.find(params[:id])
   end
 
   def update
-    @admin = Admin.find(params[:admin_id])
     @color = Color.find(params[:id])
     @color.update(color_params)
     if @color.save
-      redirect_to admin_path(@admin)
+      redirect_to user_path(current_user)
       flash.notice = "#{@color.name} has been updated."
     else
       flash.notice = "Colors cannot be duplicated."
