@@ -61,18 +61,17 @@ describe 'an admin' do
   end
 
   it 'can add reactions to db' do
-    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
     new_reaction_word = 'Happy'
     new_reaction_definition = 'feeling or showing pleasure or contentment.'
 
-    visit new_admin_reaction_path(admin)
+    visit new_user_reaction_path(@admin)
     
     fill_in :reaction_word, with: new_reaction_word
     fill_in :reaction_definition, with: new_reaction_definition
 
     click_on 'Create Reaction'
    
-    expect(current_path).to eq(admin_path(admin))
+    expect(current_path).to eq(user_path(@admin))
     expect(page).to have_content(new_reaction_word)
     expect(page).to have_content(new_reaction_definition)
   end
