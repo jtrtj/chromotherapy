@@ -23,14 +23,14 @@ describe 'an admin' do
     expect(page).to have_content(new_color_hex_value)
   end
 
-  it 'can delete colors from db' do
+  xit 'can delete colors from db' do
     spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     bmp = @admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
 
     visit user_path(@admin)
-
+    save_and_open_page
     within "#color-#{spring_green.id}" do
-      click_on 'Delete'
+      click_link 'Delete'
     end
     
     expect(current_path).to eq(user_path(@admin))
@@ -38,7 +38,7 @@ describe 'an admin' do
     expect(page).to_not have_content(spring_green.hex_value)
   end
 
-  it 'can edit colors in db' do
+  xit 'can edit colors in db' do
     spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     new_color_name = 'GR8 COLOR'
     new_color_hex_value = '#FF1493'
@@ -46,13 +46,13 @@ describe 'an admin' do
     visit user_path(@admin)
 
     within "#color-#{spring_green.id}" do
-      click_on 'Edit'
+      click_link 'Edit'
     end
     
     fill_in :color_name, with: new_color_name
     fill_in :color_hex_value, with: new_color_hex_value
     click_on 'Update Color'
-
+    
     expect(current_path).to eq(user_path(@admin))
     expect(page).to have_content(new_color_name)
     expect(page).to have_content(new_color_hex_value)
@@ -77,17 +77,15 @@ describe 'an admin' do
   end
 
   xit 'can delete reactions from db' do
-    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
-    happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
-    sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
+    happy = @admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
+    # sad = @admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
 
-    visit admin_path(admin)
+    visit user_path(@admin)
+  
+    click_link 'Delete'
 
-    within "#reaction-#{happy.id}" do
-      click_on 'Delete'
-    end
-    
-    expect(current_path).to eq(admin_path(admin))
+    save_and_open_page
+    expect(current_path).to eq(user_path(@admin))
     expect(page).to_not have_content(happy.word)
     expect(page).to_not have_content(happy.definition)
   end
