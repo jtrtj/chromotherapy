@@ -33,7 +33,7 @@ describe 'an admin' do
       click_on 'Delete'
     end
     
-    expect(current_path).to eq(admin_path(@admin))
+    expect(current_path).to eq(user_path(@admin))
     expect(page).to_not have_content(spring_green.name)
     expect(page).to_not have_content(spring_green.hex_value)
   end
