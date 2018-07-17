@@ -11,5 +11,6 @@ describe User do
   end
   describe 'relationships' do
     it {should have_many(:colors)}
+    it {should have_many(:reactions)}
   end
 end

@@ -8,4 +8,5 @@ class User < ApplicationRecord
   enum role: ['default', 'admin']
 
   has_many :colors
+  has_many :reactions
 end
