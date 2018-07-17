@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'an admin' do
   before(:each) do
-    admin = User.create(email: 'sdfg', name: 'uytrew', password: 'trew', role: 1)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    @admin = User.create(email: 'sdfg', name: 'uytrew', password: 'trew', role: 1)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
 
   it 'can add colors to db' do
@@ -17,24 +17,23 @@ describe 'an admin' do
     fill_in :color_hex_value, with: new_color_hex_value
 
     click_on 'Create Color'
-
+  
     expect(current_path).to eq(color_path(Color.last))
     expect(page).to have_content(new_color_name)
     expect(page).to have_content(new_color_hex_value)
   end
 
-  xit 'can delete colors from db' do
-    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
-    spring_green = admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
-    bmp = admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
+  it 'can delete colors from db' do
+    spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
+    bmp = @admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
 
-    visit admin_path(admin)
+    visit user_path(@admin)
 
     within "#color-#{spring_green.id}" do
       click_on 'Delete'
     end
     
-    expect(current_path).to eq(admin_path(admin))
+    expect(current_path).to eq(admin_path(@admin))
     expect(page).to_not have_content(spring_green.name)
     expect(page).to_not have_content(spring_green.hex_value)
   end
