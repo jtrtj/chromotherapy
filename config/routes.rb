@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     resources :reactions
   end
 
-  # resources :colors do 
-  #   resources :surveys
-  # end
+  resources :colors do 
+    resources :surveys
+  end
   
   resources :colors , only: [:index, :show]
   resources :reactions, only: [:index, :show]

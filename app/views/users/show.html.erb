@@ -11,6 +11,24 @@
   </div>
 </section>
 
+<% if current_user.default? %>
+<section>
+    <h1>Your Color Surveys</h1>
+    <table class="table">
+      <tr>
+        <th>Color</th>
+        <th>Reaction</th>
+      </tr>
+    <% current_user.surveys.each do |survey| %>
+      <tr id="survey-<%= survey.id %>">
+        <td><%= survey.color.name%></td>
+        <td><%= survey.reaction.word%></td>
+      </tr>
+    <% end %>
+    </table>
+  </section>
+<% end %>
+
 <% if current_user.admin? %>
 <section>
     <h1><%= link_to 'Add a color to the Chromotherapy database', new_user_color_path(current_user) %></h1>

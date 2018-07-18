@@ -9,4 +9,5 @@ class User < ApplicationRecord
 
   has_many :colors
   has_many :reactions
+  has_many :surveys
 end
