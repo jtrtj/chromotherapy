@@ -10,6 +10,7 @@ Instructions:
 <li>Choose the reaction you feel most appropriate from the drop-down menu and press 'submit'.</li>
 </p>
 <%= form_for [@color, @survey] do |f| %>
+
   <%= f.label :reaction_id %>
   <%= f.collection_select :reaction_id, @reactions,:id,:word, include_blank: true %>
   <%= f.hidden_field :user_id, value: current_user.id %>
