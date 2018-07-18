@@ -1,31 +1,9 @@
-  <div class="container">
-      <div class="columns is-multiline">
-      <% if current_admin? %>
-        <div class="column">
-          <h1 class"sub-title">
-            <%= link_to 'add color to database', new_user_color_path(current_user), method: 'GET' %>
-          </h1>
-        </div>
-      <% end %>
-        <% @colors.each do |color| %>
-          <%= link_to color_path(color) do %>
-          <div class="column" id="color-<%= color.id %>"=>
-            <style>
-            #color-<%= color.id %> {color: <%= color.hex_value %>;
-                                    background-color: <%= color.hex_value %>;
-                                    height: 300px;
-                                    width: 300px;}
-            </style>
-            <p><%= color.name %></p>
-            <% if current_admin? %>
-              <%= link_to 'delete', user_color_path(color.user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %>
-              <%= link_to 'edit', edit_user_color_path(color.user, color), method: 'GET' %>
-            <% end %>
-          </div>
-          <% end %>
-     <% end %>
-      </div>
-  </div>
+  <% if current_admin? %>
+    <%= render partial: 'admin_index' %>
+  <% else %>
+    <%= render partial: 'index' %>
+  <% end %>
+
 
 
 

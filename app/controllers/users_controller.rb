@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :two_colors
   
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:colors, :reactions, :surveys).find(params[:id])
   end
 
   def new

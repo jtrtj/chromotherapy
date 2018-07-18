@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="columns is-multiline">
+      <% @colors.each do |color| %>
+        <%= link_to color_path(color) do %>
+          <div class="column" id="color-<%= color.id %>"=>
+              <style>
+              #color-<%= color.id %> {color: <%= color.hex_value %>;
+                                      background-color: <%= color.hex_value %>;
+                                      height: 300px;
+                                      width: 300px;}
+              </style>
+              <p><%= color.name %></p>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>

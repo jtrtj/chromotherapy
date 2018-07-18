@@ -6,7 +6,7 @@ class ColorsController < ApplicationController
   end
   
   def show
-    @color = Color.find(params[:id])
+    @color = Color.includes(:reactions).find(params[:id])
     @reactions = Reaction.all
     @survey = Survey.new
   end
