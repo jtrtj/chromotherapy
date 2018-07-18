@@ -6,6 +6,18 @@
             <h1 class="title"><%= @reaction.word %></h1>
             <h1 class="sub-title"><%= @reaction.definition%></h1>
           </section>
+
+          <section class="column">
+            <table class="table">
+              <th>Colors associated with <%= @reaction.word %></th>
+              <% @reaction.colors.each do |color| %>
+                <tr>
+                  <td bgcolor="<%=color.hex_value%>" class="has-text-white"><%= link_to color.name, color_path(color) %></td>
+                </tr>
+              <% end %>
+            </table>
+          </section>
+          
         </div>
       </div>
     </div>
