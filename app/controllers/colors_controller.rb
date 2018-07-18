@@ -1,4 +1,5 @@
 class ColorsController < ApplicationController
+  before_action :two_colors
   
   def index
     @colors = Color.all
@@ -16,6 +17,7 @@ class ColorsController < ApplicationController
   end
 
   def create
+    @two_colors = Color.pick_two
     @user = User.find(params[:user_id])
     @color = @user.colors.create!(color_params)
     if @color.save

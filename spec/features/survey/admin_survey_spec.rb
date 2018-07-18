@@ -38,6 +38,7 @@ describe 'an admin' do
       click_link 'delete'
     end
 
+    expect(current_path).to eq(admin_surveys_path)
     expect(page).to_not have_content(@survey.user.name)
     expect(page).to_not have_content(@survey.color.name)
     expect(page).to_not have_content(@survey.reaction.word)

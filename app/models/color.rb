@@ -5,4 +5,8 @@ class Color < ApplicationRecord
   belongs_to :user
   has_many :surveys
   has_many :reactions, through: :surveys
+
+  def self.pick_two
+    Color.order('RANDOM()').limit(2)
+  end
 end
