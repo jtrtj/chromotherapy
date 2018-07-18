@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :two_colors
+  
   def new
   end
 
