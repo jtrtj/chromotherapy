@@ -12,4 +12,11 @@ describe Survey do
     it {should belong_to(:reaction)}
     it {should belong_to(:user)}
   end
+
+  context 'class methods' do
+    it '#sort_by_color(color)' do
+
+      
+    end
+  end
 end
