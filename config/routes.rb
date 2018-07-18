@@ -13,8 +13,12 @@ Rails.application.routes.draw do
     resources :reactions
   end
 
+  namespace :admin do
+    resources :surveys, only: [:index, :edit, :create, :destroy]
+  end
+
   resources :colors do 
-    resources :surveys
+    resources :surveys, only: [:new, :create]
   end
   
   resources :colors , only: [:index, :show]

@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-#add a nother user
 describe 'an admin' do
   before(:each) do
     @admin = User.create(email: '456@real.net', name: 'Homer', password: 'trew', role: 1)
     @user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')
+    @user.colors.create(name: 'Ssdfghdfd', hex_value: '#123456')
+    @user.colors.create(name: 'jhgf', hex_value: '#987098')
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
 

@@ -1,8 +1,7 @@
 <section class="hero is-white is-fullheight">
   <div class="hero-body">
       <div class="container">
-        <div class="columns is-vertical">
-
+        <div class="columns is-hcentered">
           <section class="column">
             <h1 class="title"><%= @color.name %></h1>
             <p class="sub-title"><%= @color.hex_value %></p>
@@ -26,10 +25,16 @@
               <% end %>
             </table>
           </section>
-
-          <% if current_user.default? %>
-            <%render partial: 'form' %>
+          <section class="column">
+          <% if current_user %>
+            <%= render partial: '/surveys/form' %>
+          <% else %>
+            <h1 class="title is-6">
+              You need to be a registered user to log a reaction.
+            </h1>
+            <%= button_to  'sign up', new_user_path, class: 'button' %>
           <% end %>
+          </section>
         </div>
       </div>
     </div>

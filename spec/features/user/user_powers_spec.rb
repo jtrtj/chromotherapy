@@ -5,6 +5,9 @@ describe 'registered user powers' do
     before(:each) do
       @user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+      @user.colors.create(name: 'Ssdfghdfd', hex_value: '#123456')
+      @user.colors.create(name: 'jhgf', hex_value: '#987098')
     end
 
   it 'can add colors to the database' do

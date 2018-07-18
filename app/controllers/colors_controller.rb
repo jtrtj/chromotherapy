@@ -1,5 +1,6 @@
 class ColorsController < ApplicationController
-  
+  before_action :two_colors
+
   def index
     @colors = Color.all
   end
@@ -17,7 +18,7 @@ class ColorsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @color = @user.colors.create!(color_params)
+    @color = @user.colors.create(color_params)
     if @color.save
       redirect_to color_path(@color)
       flash.notice = "#{@color.name} has been added to chromotherapy."

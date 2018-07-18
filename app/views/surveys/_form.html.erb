@@ -1,5 +1,18 @@
+<h1 class="title">Submit your reaction here</h1>
+<p class="sub-title">
+Instructions:
+<ol>
+<li>Click on the color square to view the color in fullscreen.</li>
+<li>Position yourself or the screen you are using so that the color field fills your vision.</li>
+<li>Let your eyes relax and lose focus.</li>
+<li>Stare into the color.</li>
+<li>When you feel that you have had enough time with the color, press the escape key to exit fullscreen.</li>
+<li>Choose the reaction you feel most appropriate from the drop-down menu and press 'submit'.</li>
+</p>
 <%= form_for [@color, @survey] do |f| %>
+
   <%= f.label :reaction_id %>
   <%= f.collection_select :reaction_id, @reactions,:id,:word, include_blank: true %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit 'submit'%>
 <% end %>

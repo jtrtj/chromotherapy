@@ -1,6 +1,7 @@
 class ReactionsController < ApplicationController
   before_action :current_admin?,  only: [:new, :create, :edit, :update, :destroy]
-
+  before_action :two_colors
+  
   def index
     @reactions = Reaction.all
   end

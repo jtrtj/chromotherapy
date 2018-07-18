@@ -20,7 +20,6 @@ describe 'a user' do
       survey = bmp.surveys.create!(reaction: happy, user: user)
 
       visit color_path(bmp)
-      save_and_open_page
       expect(page).to have_content(happy.word)
       expect(page).to have_content(happy.definition)
     end

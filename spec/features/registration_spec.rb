@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'registration work-flow' do
+  before(:each) do
+    @user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')
+    @user.colors.create(name: 'Ssdfghdfd', hex_value: '#123456')
+    @user.colors.create(name: 'jhgf', hex_value: '#987098')
+  end
 
   it 'submits a registration form successfully' do
     email = 'megan_fox@hotmail.com'

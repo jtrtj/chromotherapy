@@ -1,0 +1,25 @@
+  <div class="container">
+      <div class="columns\">
+        <section class="column">
+          <h1 class="title is-4"> All Chromotherapy Surveys</h1>
+          <h2 class="sube-title"><%= @surveys.length %> in the Database</h2>
+        </section>
+        <section class="column">
+          <table class="table">
+            <tr>
+              <th>User</th>
+              <th>Color</th>
+              <th>Reaction</th>
+            </tr>
+              <% @surveys.each do |survey| %>
+                <tr id="survey-<%= survey.id %>">
+                  <td><%= link_to survey.user.name, user_path(survey.user)%></td>
+                  <td bgcolor="<%= survey.color.hex_value%>"><%= link_to survey.color.name, color_path(survey.color) %></td>
+                  <td><%= link_to survey.reaction.word, reaction_path(survey.reaction) %></td>
+                  <td><%= link_to 'delete', admin_survey_path(survey), method: 'DELETE', data: {confirm: "Really delete survey?"} %></td>
+                </tr>
+              <% end %>
+          </table>
+        </section>
+      </div>
+  </div>
