@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :surveys, only: [:index]
+    resources :surveys, only: [:index, :edit, :create, :destroy]
   end
 
   resources :colors do 
