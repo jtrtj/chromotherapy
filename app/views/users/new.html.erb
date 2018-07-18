@@ -1,6 +1,6 @@
 <style>
 #grad {
-  background: linear-gradient(to bottom right, <%= Color.all[rand(1..Color.count)].hex_value %>, <%= Color.all[rand(1..Color.count)].hex_value %>);
+  background: linear-gradient(to bottom right, <%= @two_colors[0].hex_value %>, <%= @two_colors[1].hex_value %>);
 }
 </style>
 <section id="grad" class="hero is-white is-fullheight">

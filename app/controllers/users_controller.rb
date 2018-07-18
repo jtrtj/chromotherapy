@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :two_colors
   
   def show
     @user = User.find(params[:id])
