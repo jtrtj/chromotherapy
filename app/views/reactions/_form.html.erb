@@ -1,7 +1,33 @@
-<%= form_for [current_user, @reaction] do |f| %>
-  <%=f.label :word%>
-  <%=f.text_field :word%>
-  <%=f.label :definition%>
-  <%=f.text_field :definition%>
-  <%=f.submit%>
-<%end%>
+<style>
+#grad {
+  background: linear-gradient(to bottom right, <%= @two_colors[0].hex_value %>, <%= @two_colors[1].hex_value %>);
+}
+</style>
+
+<section id="grad" class="hero is-white is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h3 class="title has-text-white">Please enter a word and its definition.</h3>
+                    <div class="box">
+                        <%= form_for [current_user, @reaction] do |f| %>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :word%>
+                                  <%= f.text_field :word, class: "input is-large",placeholder: "Word"  %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :definition%>
+                                  <%= f.text_field :definition, class: "input is-large", placeholder: "Definition"  %>
+                                </div>
+                            </div>
+                            <%= f.submit class: "button is-block is-info is-large is-fullwidth" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script async type="text/javascript" src="../js/bulma.js"></script>
