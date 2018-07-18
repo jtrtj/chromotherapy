@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-#add a nother user
 describe 'an admin' do
   before(:each) do
     @admin = User.create(email: '456@real.net', name: 'Homer', password: 'trew', role: 1)
