@@ -14,10 +14,18 @@ describe 'an admin' do
   it 'can see a list of all surveys' do
     visit user_path(@admin)
 
-    click_link 'surveys'
+    click_link 'Surveys'
 
     expect(page).to have_content(@bmp.name)
     expect(page).to have_content(@happy.word)
     expect(page).to have_content(@user.name)
+  end
+
+  it 'can see a count of all surveys' do
+    visit user_path(@admin)
+
+    click_link 'Surveys'
+
+    expect(page).to have_content(Survey.count)
   end
 end
