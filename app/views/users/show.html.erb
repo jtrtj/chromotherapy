@@ -1,4 +1,4 @@
-<section class="hero is-small is-success is-bold">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container has-text-centered">
         <% if current_user.id == @user.id %>
@@ -6,9 +6,9 @@
           Welcome, <%=@user.name%>!
           </h1>
           <h2 class="subtitle">
-          <%= link_to 'Add a color to the Chromotherapy database', new_user_color_path(@user) %>
-          </h2>
-          <h2 class="subtitle">
+          From here you can view colors, reactions and surveys you have added to the database.<br>
+          and you can <%= link_to 'Add a color to the Chromotherapy database', new_user_color_path(@user) %>
+          or
           <%= link_to 'Add a reaction to the Chromotherapy database', new_user_reaction_path(@user) %>
           </h2>
         <%else%>
@@ -20,58 +20,62 @@
   </div>
 </section>
 
-<section>
-    <h1>Your Color Surveys</h1>
-    <table class="table">
-      <tr>
-        <th>Color</th>
-        <th>Reaction</th>
-      </tr>
-    <% @user.surveys.each do |survey| %>
-      <tr id="survey-<%= survey.id %>">
-        <td><%= survey.color.name%></td>
-        <td><%= survey.reaction.word%></td>
-      </tr>
-    <% end %>
-    </table>
-  </section>
+<div class="columns is-multiline">
+  <section class="column is-offset-1">
+      <h1>Colors Added by <%= @user.name %>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Hex Value</th>
+        </tr>
+      <% @user.colors.each do |color| %>
+        <tr id="color-<%= color.id %>">
+          <td><%= link_to color.name, color_path(color)%></td>
+          <td bgcolor="<%= color.hex_value%>"><%= color.hex_value %></td>
+          <% if current_user.id == @user.id %>
+            <td><%= link_to 'delete', user_color_path(@user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
+            <td><%= link_to 'edit', edit_user_color_path(@user, color), method: 'GET' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </table>
+    </section>
 
-<section>
-    <h1>Colors Added by <%= @user.name %>
-    <table class="table">
-      <tr>
-        <th>Name</th>
-        <th>Hex Value</th>
-      </tr>
-    <% @user.colors.each do |color| %>
-      <tr id="color-<%= color.id %>">
-        <td><%= link_to color.name, color_path(color)%></td>
-        <td bgcolor="<%= color.hex_value%>"><%= color.hex_value %></td>
-        <% if current_user.id == @user.id %>
-          <td><%= link_to 'delete', user_color_path(@user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
-          <td><%= link_to 'edit', edit_user_color_path(@user, color), method: 'GET' %></td>
-        <% end %>
-      </tr>
-    <% end %>
-    </table>
-  </section>
+  <section class="column">
+      <h1>Your Color Surveys</h1>
+      <table class="table">
+        <tr>
+          <th>Color</th>
+          <th>Reaction</th>
+        </tr>
+      <% @user.surveys.each do |survey| %>
+        <tr id="survey-<%= survey.id %>">
+          <td><%= survey.color.name%></td>
+          <td><%= survey.reaction.word%></td>
+        </tr>
+      <% end %>
+      </table>
+    </section>
 
-  <section>
-    <h1>Reactions Added by <%= @user.name %>
-    <table class="table">
-      <tr>
-        <th>Word</th>
-        <th>Definition</th>
-      </tr>
-    <% @user.reactions.each do |reaction| %>
-      <tr id="reaction-<%= reaction.id %>">
-        <td><%= link_to reaction.word, reaction_path(reaction)%></td>
-        <td><%= reaction.definition%></td>
-        <% if current_user.id == @user.id %>
-          <td><%= link_to 'delete', user_reaction_path(@user, reaction), method: 'DELETE'%></td>
-          <td><%= link_to 'edit', edit_user_reaction_path(@user, reaction), method: 'GET' %></td>
-        <% end %>
-      </tr>
-    <% end %>
-    </table>
-  </section>
+    <section class="column">
+      <h1>Reactions Added by <%= @user.name %>
+      <table class="table">
+        <tr>
+          <th>Word</th>
+          <th>Definition</th>
+        </tr>
+      <% @user.reactions.each do |reaction| %>
+        <tr id="reaction-<%= reaction.id %>">
+          <td><%= link_to reaction.word, reaction_path(reaction)%></td>
+          <td><%= reaction.definition%></td>
+          <% if current_user.id == @user.id %>
+            <td><%= link_to 'delete', user_reaction_path(@user, reaction), method: 'DELETE'%></td>
+            <td><%= link_to 'edit', edit_user_reaction_path(@user, reaction), method: 'GET' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </table>
+    </section>
+    <section class="column is-1">
+    </section>
+  </div>
