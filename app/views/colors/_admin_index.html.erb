@@ -8,7 +8,7 @@
         <th>Color</th>
         <th>Hex Value</th>
         <% @colors.each do |color| %>
-        <tr>
+        <tr id="color-<%= color.id %>">
           <td><%= link_to  color.name, color_path(color) %></td>
           <td bgcolor="<%= color.hex_value %>" class="has-text-white"><%= color.hex_value %></td>
           <td><%= link_to 'delete', user_color_path(color.user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
