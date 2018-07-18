@@ -1,4 +1,4 @@
-<%= form_for [@admin, @reaction] do |f| %>
+<%= form_for [current_user, @reaction] do |f| %>
   <%=f.label :word%>
   <%=f.text_field :word%>
   <%=f.label :definition%>

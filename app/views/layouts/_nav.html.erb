@@ -11,6 +11,11 @@
     <% if current_user %>
       <div class="navbar-end">
         </div class="navbar-item">
+          <%= link_to 'my profile', user_path(current_user), class: "navbar-item" %>
+        </div>
+      </div>
+      <div class="navbar-end">
+        </div class="navbar-item">
           <%= link_to 'log out', logout_path, class: "navbar-item" %>
         </div>
       </div>

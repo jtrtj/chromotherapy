@@ -1,4 +1,4 @@
-<%= form_for [@admin, @color] do |f| %>
+<%= form_for [current_user, @color] do |f| %>
   <%=f.label :name%>
   <%=f.text_field :name%>
   <%=f.label :hex_value%>

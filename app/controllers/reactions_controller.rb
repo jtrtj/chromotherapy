@@ -1,14 +1,18 @@
 class ReactionsController < ApplicationController
+  before_action :current_admin?,  only: [:new, :create, :edit, :update, :destroy]
+
+  def index
+    @reactions = Reaction.all
+  end
+
   def new
-    @admin = Admin.find(params[:admin_id])
     @reaction = Reaction.new
   end
 
   def create
-    @admin = Admin.find(params[:admin_id])
-    @reaction = @admin.reactions.create!(reaction_params)
+    @reaction = current_user.reactions.create!(reaction_params)
     if @reaction.save
-      redirect_to admin_path(@admin)
+      redirect_to user_path(current_user)
       flash.notice = "#{@reaction.word} has been added to chromotherapy."
     else
       render :new
@@ -16,16 +20,14 @@ class ReactionsController < ApplicationController
   end
 
   def edit
-    @admin = Admin.find(params[:admin_id])
     @reaction = Reaction.find(params[:id])
   end
 
   def update
-    @admin = Admin.find(params[:admin_id])
     @reaction = Reaction.find(params[:id])
     @reaction.update(reaction_params)
     if @reaction.save
-      redirect_to admin_path(@admin)
+      redirect_to user_path(current_user)
       flash.notice = "Reaction has been updated."
     else
       flash.notice = "Reactions cannot be duplicated."
@@ -34,10 +36,9 @@ class ReactionsController < ApplicationController
   end
 
   def destroy
-    admin = Admin.find(params[:admin_id])
     reaction = Reaction.find(params[:id])
     reaction.destroy
-    redirect_to admin_path(admin)
+    redirect_to user_path(current_user)
     flash.notice = "#{reaction.word} has been removed chromotherapy"
   end
 
