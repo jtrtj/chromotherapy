@@ -43,4 +43,20 @@ describe 'an admin' do
     expect(page).to_not have_content(@survey.color.name)
     expect(page).to_not have_content(@survey.reaction.word)
   end
+
+  xit 'can sort surveys by color' do
+    visit admin_surveys_path
+
+    user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')
+    happy = user.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
+    color_1 = user.colors.create(name: 'Ssdfghdfd', hex_value: '#123456')
+    color_2 = user.colors.create(name: 'hgfd', hex_value: '#654321')
+    survey_1 = color_1.surveys.create(user: user, reaction: happy)
+    survey_2 = color_1.surveys.create(user: user, reaction: happy)
+    survey_3 = color_2.surveys.create(user: user, reaction: happy)
+    
+    select(color_1.name, from: :survey_reaction_id)
+
+    expect(Survey.sort_by_color(color_1)).to eq([survey_1, survey_2])
+  end
 end
