@@ -3,4 +3,8 @@ class Survey < ApplicationRecord
   belongs_to :color
   belongs_to :reaction
   belongs_to :user
+
+  def self.sort_by_color(color)
+    where(color: color)
+  end
 end
