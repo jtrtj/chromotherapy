@@ -1,16 +1,16 @@
 <section class="hero is-white is-fullheight">
   <div class="hero-body">
       <div class="container">
-        <div class="columns is-hcentered">
-          <section class="column">
+        <div class="columns is-multiline">
+          <section class="column is-6 is-offset-4">
             <h1 class="title"><%= @color.name %></h1>
             <p class="sub-title"><%= @color.hex_value %></p>
           </section>
-          <section class="column">
+          <section class="column is-4 is-offset-4">
             <%= render partial: 'box'%>
           </section>
 
-          <section class="column">
+          <section class="column is-4 is-offset-2">
             <h1>Reactions</h1>
             <table class="table">
               <tr>
@@ -25,7 +25,7 @@
               <% end %>
             </table>
           </section>
-          <section class="column">
+          <section class="column is-4">
           <% if current_user %>
             <%= render partial: '/surveys/form' %>
           <% else %>
