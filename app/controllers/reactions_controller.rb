@@ -5,16 +5,18 @@ class ReactionsController < ApplicationController
     @reactions = Reaction.all
   end
 
+  def show
+    @reaction = Reaction.find(params[:id])
+  end
+
   def new
-    @user = User.find(params[:user_id])
     @reaction = Reaction.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @reaction = @user.reactions.create!(reaction_params)
+    @reaction = current_user.reactions.create!(reaction_params)
     if @reaction.save
-      redirect_to user_path(current_user)
+      redirect_to reaction_path(@reaction)
       flash.notice = "#{@reaction.word} has been added to chromotherapy."
     else
       render :new
@@ -29,7 +31,7 @@ class ReactionsController < ApplicationController
     @reaction = Reaction.find(params[:id])
     @reaction.update(reaction_params)
     if @reaction.save
-      redirect_to user_path(current_user)
+      redirect_to reaction_path(@reaction)
       flash.notice = "Reaction has been updated."
     else
       flash.notice = "Reactions cannot be duplicated."

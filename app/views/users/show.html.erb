@@ -1,12 +1,21 @@
 <section class="hero is-small is-success is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
-        <h1 class="title">
-        Welcome, <%=@user.name%>!
-        </h1>
-        <h2 class="subtitle">
-        ...
-        </h2>
+        <% if current_user.id == @user.id %>
+          <h1 class="title">
+          Welcome, <%=@user.name%>!
+          </h1>
+          <h2 class="subtitle">
+          <%= link_to 'Add a color to the Chromotherapy database', new_user_color_path(@user) %>
+          </h2>
+          <h2 class="subtitle">
+          <%= link_to 'Add a reaction to the Chromotherapy database', new_user_reaction_path(@user) %>
+          </h2>
+        <%else%>
+          <h1 class="title">
+          <%=@user.name%>'s profile
+          </h1>
+        <%end%>
     </div>
   </div>
 </section>
@@ -28,8 +37,7 @@
   </section>
 
 <section>
-    <h1><%= link_to 'Add a color to the Chromotherapy database', new_user_color_path(@user) %></h1>
-    <h1>Colors Added by <%= current_user.name %>
+    <h1>Colors Added by <%= @user.name %>
     <table class="table">
       <tr>
         <th>Name</th>
@@ -40,15 +48,15 @@
         <td><%= link_to color.name, color_path(color)%></td>
         <td bgcolor="<%= color.hex_value%>"><%= color.hex_value %></td>
         <% if current_user.id == @user.id %>
-        <td><%= link_to 'delete', user_color_path(@user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"}  %></td>
-        <td><%= link_to 'edit', edit_user_color_path(@user, color), method: 'GET' %></td>
+          <td><%= link_to 'delete', user_color_path(@user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
+          <td><%= link_to 'edit', edit_user_color_path(@user, color), method: 'GET' %></td>
         <% end %>
       </tr>
+    <% end %>
     </table>
   </section>
 
   <section>
-    <h1><%= link_to 'Add a reaction to the Chromotherapy database', new_user_reaction_path(@user) %></h1>
     <h1>Reactions Added by <%= @user.name %>
     <table class="table">
       <tr>
@@ -59,12 +67,11 @@
       <tr id="reaction-<%= reaction.id %>">
         <td><%= link_to reaction.word, reaction_path(reaction)%></td>
         <td><%= reaction.definition%></td>
-        <% if current_admin? %>
-        <td><%= link_to 'Delete', user_reaction_path(@user, reaction), method: 'DELETE'%></td>
+        <% if current_user.id == @user.id %>
+          <td><%= link_to 'delete', user_reaction_path(@user, reaction), method: 'DELETE'%></td>
+          <td><%= link_to 'edit', edit_user_reaction_path(@user, reaction), method: 'GET' %></td>
         <% end %>
-        <td><%= link_to 'Edit', edit_user_reaction_path(@user, reaction), method: 'GET' %></td>
       </tr>
     <% end %>
     </table>
   </section>
-<% end %>
