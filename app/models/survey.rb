@@ -7,4 +7,8 @@ class Survey < ApplicationRecord
   def self.sort_by_color(color)
     where(color: color)
   end
+
+  def self.sort_by_reaction(reaction)
+    where(reaction: reaction)
+  end
 end
