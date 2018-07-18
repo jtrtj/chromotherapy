@@ -7,7 +7,7 @@ class ReactionsController < ApplicationController
   end
 
   def show
-    @reaction = Reaction.find(params[:id])
+    @reaction = Reaction.includes(:colors).find(params[:id])
   end
 
   def new
