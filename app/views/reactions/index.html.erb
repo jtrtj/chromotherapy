@@ -1,6 +1,13 @@
 
   <div class="container">
       <div class="columns is-multiline">
+        <% if current_admin? %>
+          <div class="column">
+            <h1 class"sub-title">
+              <%= link_to 'add reaction to database', new_user_reaction_path(current_user), method: 'GET' %>
+            </h1>
+          </div>
+        <% end %>
         <% @reactions.each do |reaction| %>
           <%= link_to reaction_path(reaction) do %>
           <div class="column box has-text-centered" id="reaction-<%= reaction.id %>"=>
