@@ -23,12 +23,12 @@ describe 'an admin' do
     expect(page).to have_content(new_color_hex_value)
   end
 
-  xit 'can delete colors from db' do
+  it 'can delete colors from db' do
     spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     bmp = @admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
 
     visit user_path(@admin)
-    save_and_open_page
+    
     within "#color-#{spring_green.id}" do
       click_link 'Delete'
     end

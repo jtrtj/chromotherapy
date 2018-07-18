@@ -27,7 +27,7 @@ describe 'a user' do
 
       visit colors_path
 
-      expect(page).to have_button('add color to database')
+      expect(page).to have_link('add color to database')
     end
   end
 
