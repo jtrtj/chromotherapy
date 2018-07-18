@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'a user' do
+  before(:each) do
+    @user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')
+    @user.colors.create(name: 'Ssdfghdfd', hex_value: '#123456')
+    @user.colors.create(name: 'jhgf', hex_value: '#987098')
+  end
   context 'visiting colors index' do
     it "sees all colors and can click on one to see it's show page" do
       admin = User.create!(name: 'John', email: 'jtr022@gmail.com', password: 'cool')
