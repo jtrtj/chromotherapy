@@ -1,9 +1,14 @@
-<section class="hero is-white is-fullheight">
+<style>
+#grad {
+  background: linear-gradient(to bottom right, <%= Color.all[rand(0..Color.count)].hex_value %>, <%= Color.all[rand(0..Color.count)].hex_value %>);
+}
+</style>
+<section id="grad" class="hero is-white is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">New Account</h3>
-                    <p class="subtitle has-text-grey">...</p>
+                    <h3 class="title has-text-white">New Account</h3>
+                    <p class="subtitle has-text-white">Your email will be used to log in after signing up.</p>
                     <div class="box">
                         <%= form_for @user do |f| %>
                             <div class="field">

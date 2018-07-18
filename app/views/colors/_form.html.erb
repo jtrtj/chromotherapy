@@ -1,7 +1,33 @@
-<%= form_for [current_user, @color] do |f| %>
-  <%=f.label :name%>
-  <%=f.text_field :name%>
-  <%=f.label :hex_value%>
-  <%=f.text_field :hex_value%>
-  <%=f.submit%>
-<%end%>
+<style>
+#grad {
+  background: linear-gradient(to bottom right, <%= Color.all[rand(0..Color.count)].hex_value %>, <%= Color.all[rand(0..Color.count)].hex_value %>);
+}
+</style>
+<section id="grad" class="hero is-white is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h3 class="title has-text-white">Please enter the name of the Color and its Hexadecimal value starting with '#'</h3>
+                    <p class="subtitle has-text-white">Need help deciding? <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">Try this color picker</a> by <a href="https://dixonandmoe.com/" target="_blank">Dixon & Moe</a></p>
+                    <div class="box">
+                        <%= form_for [current_user, @color] do |f| %>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :name%>
+                                  <%= f.text_field :name, class: "input is-large",placeholder: "Color's Name"  %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :hex_value%>
+                                  <%= f.text_field :hex_value, class: "input is-large", placeholder: "#000000"  %>
+                                </div>
+                            </div>
+                            <%= f.submit class: "button is-block is-info is-large is-fullwidth" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script async type="text/javascript" src="../js/bulma.js"></script>

@@ -13,7 +13,8 @@ describe 'a registered user' do
   context 'visiting color show page' do
     it 'will see a form to fill out a survey about the color' do
       visit color_path(@bmp)
-
+      save_and_open_page
+      
       select(@happy.word, from: :survey_reaction_id)
 
       click_on 'submit'

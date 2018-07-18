@@ -1,5 +1,7 @@
 class SurveysController < ApplicationController
   def new
+    @survey = Survey.new
+    @color = Color.find(params[:color_id])
   end
 
   def create

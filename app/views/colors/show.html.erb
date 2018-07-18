@@ -26,10 +26,11 @@
               <% end %>
             </table>
           </section>
-
-          <% if current_user.default? %>
-            <%render partial: 'form' %>
+          <section class="column">
+          <% if current_user %>
+            <%= render partial: '/surveys/form' %>
           <% end %>
+          </section>
         </div>
       </div>
     </div>

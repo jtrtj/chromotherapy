@@ -10,8 +10,9 @@ require 'csv'
 
 
 
-admin = User.create!(name: 'John', email: 'jtr022@gmail.com', password: 'cool', role: 1)
-
+admin = User.create!(name: 'admin', email: 'admin', password: 'admin', role: 1)
+admin.reactions.create!(word: 'happy', definition: 'feeling or showing pleasure or contentment.')
+admin.reactions.create!(word: 'sad', definition: 'feeling or showing sorrow; unhappy.')
 CSV.foreach('db/data/color_examples.csv', headers: true, header_converters: :symbol) do |color|
   admin.colors.create(
     name:       color[:name],
@@ -20,3 +21,4 @@ CSV.foreach('db/data/color_examples.csv', headers: true, header_converters: :sym
 end
 
 puts "There are now #{Color.count} colors in the database"
+puts "There are now #{Reaction.count} reactions in the database"

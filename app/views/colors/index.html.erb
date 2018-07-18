@@ -1,11 +1,3 @@
-
-  <% if current_user.admin? %>
-  <div class="hero">
-    <div class="hero-body">
-      <%= link_to  "add color to database", new_user_color_path(current_user) %>
-    </div>
-  </div>
-  <%end%>
   <div class="container">
       <div class="columns is-multiline">
         <% @colors.each do |color| %>
