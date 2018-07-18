@@ -45,7 +45,11 @@ class ColorsController < ApplicationController
   def destroy
     color = Color.find(params[:id])
     color.destroy
+    if current_admin?
+      redirect_to colors_path
+    else
     redirect_to user_path(current_user)
+    end
     flash.notice = "#{color.name} has been removed from chromotherapy"
   end
 

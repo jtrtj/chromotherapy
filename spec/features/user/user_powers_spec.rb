@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'user powers' do
+describe 'registered user powers' do
 
     before(:each) do
       @user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')

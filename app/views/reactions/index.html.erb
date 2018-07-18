@@ -1,11 +1,4 @@
 
-  <% if current_user.admin? %>
-  <div class="hero">
-    <div class="hero-body">
-      <%= link_to  "add reaction to database", new_user_reaction_path(current_user) %>
-    </div>
-  </div>
-  <%end%>
   <div class="container">
       <div class="columns is-multiline">
         <% @reactions.each do |reaction| %>
@@ -13,6 +6,10 @@
           <div class="column box has-text-centered" id="reaction-<%= reaction.id %>"=>
             <p class="title"><%= reaction.word %></p>
             <p class="sub-title"><%= reaction.definition %></p>
+             <% if current_admin? %>
+              <%= link_to 'delete', user_reaction_path(reaction.user, reaction), method: 'DELETE', data: {confirm: "Really delete #{reaction.word}"} %>
+              <%= link_to 'edit', edit_user_reaction_path(reaction.user, reaction), method: 'GET' %>
+            <% end %>
           </div>
           <% end %>
      <% end %>

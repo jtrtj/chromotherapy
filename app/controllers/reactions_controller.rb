@@ -42,7 +42,11 @@ class ReactionsController < ApplicationController
   def destroy
     reaction = Reaction.find(params[:id])
     reaction.destroy
-    redirect_to user_path(current_user)
+    if current_admin?
+      redirect_to reactions_path
+    else
+      redirect_to user_path(current_user)
+    end
     flash.notice = "#{reaction.word} has been removed chromotherapy"
   end
 

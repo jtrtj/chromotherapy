@@ -17,6 +17,10 @@
                                     width: 300px;}
             </style>
             <p class="title has-text-white has-text-centered"><%= color.name %></p>
+            <% if current_admin? %>
+              <%= link_to 'delete', user_color_path(color.user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %>
+              <%= link_to 'edit', edit_user_color_path(color.user, color), method: 'GET' %>
+            <% end %>
           </div>
           <% end %>
      <% end %>
