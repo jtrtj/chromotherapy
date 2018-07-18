@@ -1,18 +1,21 @@
-  <div class="container">
-      <div class="columns is-multiline">
-        <div class="column">
-          <h1 class"sub-title">
-            <%= link_to 'add color to database', new_user_color_path(current_user), method: 'GET' %>
-          </h1>
-          <table class="table">
-            <th>Color</th>
-            <th>Hex Value</th>
-            <% @colors.each do |color| %>
-            <tr>
-              <td><%= link_to  color.name, color_path(color) %></td>
-              <td bgcolor="<%= color.hex_value %>" class="has-text-white"><%= color.hex_value %></td>
-              <td><%= link_to 'delete', user_color_path(color.user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
-              <td><%= link_to 'edit', edit_user_color_path(color.user, color), method: 'GET' %></td>
-            </tr>
-            <% end %>
-          </table>
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column">
+      <h1 class"sub-title">
+        <%= link_to 'add color to database', new_user_color_path(current_user), method: 'GET' %>
+      </h1>
+      <table class="table">
+        <th>Color</th>
+        <th>Hex Value</th>
+        <% @colors.each do |color| %>
+        <tr>
+          <td><%= link_to  color.name, color_path(color) %></td>
+          <td bgcolor="<%= color.hex_value %>" class="has-text-white"><%= color.hex_value %></td>
+          <td><%= link_to 'delete', user_color_path(color.user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
+          <td><%= link_to 'edit', edit_user_color_path(color.user, color), method: 'GET' %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>  
+</div>  
