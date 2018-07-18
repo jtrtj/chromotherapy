@@ -28,4 +28,18 @@ describe 'an admin' do
 
     expect(page).to have_content(Survey.count)
   end
+
+  it 'can delete a survey' do
+    visit user_path(@admin)
+
+    click_link 'Surveys'
+
+    within "#survey-#{@survey.id}" do
+      click_link 'delete'
+    end
+
+    expect(page).to_not have_content(@survey.user.name)
+    expect(page).to_not have_content(@survey.color.name)
+    expect(page).to_not have_content(@survey.reaction.word)
+  end
 end
