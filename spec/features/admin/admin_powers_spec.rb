@@ -1,113 +1,78 @@
 require 'rails_helper'
 
+#add a nother user
 describe 'an admin' do
   before(:each) do
-    @admin = User.create(email: 'sdfg', name: 'uytrew', password: 'trew', role: 1)
+    @admin = User.create(email: '456@real.net', name: 'Homer', password: 'trew', role: 1)
+    @user = User.create(email: '123@fake.net', name: 'Bart', password: 'haha')
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
 
-  it 'can add colors to db' do
-    new_color_name = 'Spring Green'
-    new_color_hex_value = '#00FF7F'
+  it "can delete anyone's colors from database" do
+    color = @user.colors.create(name: 'Spring Green', hex_value: '#00FF7F')
 
     visit colors_path
-    click_on 'add color to database'
-    
-    fill_in :color_name, with: new_color_name
-    fill_in :color_hex_value, with: new_color_hex_value
 
-    click_on 'Create Color'
-  
-    expect(current_path).to eq(color_path(Color.last))
-    expect(page).to have_content(new_color_name)
-    expect(page).to have_content(new_color_hex_value)
-  end
-
-  it 'can delete colors from db' do
-    spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
-    bmp = @admin.colors.create!(name: 'baker-miller-pink', hex_value: '#ff91af')
-
-    visit user_path(@admin)
-    
-    within "#color-#{spring_green.id}" do
-      click_link 'Delete'
+    within "#color-#{color.id}" do
+      click_on 'delete'
     end
-    
-    expect(current_path).to eq(user_path(@admin))
-    expect(page).to_not have_content(spring_green.name)
-    expect(page).to_not have_content(spring_green.hex_value)
+  
+    expect(current_path).to eq(colors_path)
+    expect(page).to_not have_content(color.name)
   end
 
-  xit 'can edit colors in db' do
-    spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
+  it 'can edit colors anyone added to the database' do
+    spring_green = @user.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     new_color_name = 'GR8 COLOR'
     new_color_hex_value = '#FF1493'
 
-    visit user_path(@admin)
+    visit colors_path
 
     within "#color-#{spring_green.id}" do
-      click_link 'Edit'
+      click_link 'edit'
     end
     
     fill_in :color_name, with: new_color_name
     fill_in :color_hex_value, with: new_color_hex_value
     click_on 'Update Color'
     
-    expect(current_path).to eq(user_path(@admin))
+    expect(current_path).to eq(color_path(spring_green))
     expect(page).to have_content(new_color_name)
     expect(page).to have_content(new_color_hex_value)
     expect(page).to_not have_content('Spring Green')
     expect(page).to_not have_content('#00FF7F')
   end
 
-  it 'can add reactions to db' do
-    new_reaction_word = 'Happy'
-    new_reaction_definition = 'feeling or showing pleasure or contentment.'
-
-    visit new_user_reaction_path(@admin)
+  it 'can delete reactions anyone added to the database' do
+    happy = @user.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
     
-    fill_in :reaction_word, with: new_reaction_word
-    fill_in :reaction_definition, with: new_reaction_definition
+    visit reactions_path
+    
+    within "#reaction-#{happy.id}" do
+      click_link 'delete'
+    end
 
-    click_on 'Create Reaction'
-   
-    expect(current_path).to eq(user_path(@admin))
-    expect(page).to have_content(new_reaction_word)
-    expect(page).to have_content(new_reaction_definition)
-  end
-
-  xit 'can delete reactions from db' do
-    happy = @admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
-    # sad = @admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
-
-    visit user_path(@admin)
-  
-    click_link 'Delete'
-
-    save_and_open_page
-    expect(current_path).to eq(user_path(@admin))
+    expect(current_path).to eq(reactions_path)
     expect(page).to_not have_content(happy.word)
     expect(page).to_not have_content(happy.definition)
   end
 
-  xit 'can edit reactions in db' do
-    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
-    happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
-    sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
+  it 'can edit reactions anyone added to the database' do
+    happy = @user.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
     new_reaction_word = 'Overjoyed'
     new_reaction_definition = 'extremely happy.'
 
-    visit admin_path(admin)
+    visit reactions_path
 
     within "#reaction-#{happy.id}" do
-      click_on 'Edit'
+      click_link 'edit'
     end
     
     fill_in :reaction_word, with: new_reaction_word
     fill_in :reaction_definition, with: new_reaction_definition
     click_on 'Update Reaction'
 
-    expect(current_path).to eq(admin_path(admin))
+    expect(current_path).to eq(reaction_path(happy))
     expect(page).to have_content(new_reaction_word)
     expect(page).to have_content(new_reaction_definition)
     expect(page).to_not have_content('Happy')
