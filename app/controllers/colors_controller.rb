@@ -1,7 +1,5 @@
 class ColorsController < ApplicationController
   
-  before_action :current_admin?,  only: [:new, :create, :edit, :update, :destroy]
-
   def index
     @colors = Color.all
   end
@@ -36,7 +34,7 @@ class ColorsController < ApplicationController
     @color = Color.find(params[:id])
     @color.update(color_params)
     if @color.save
-      redirect_to user_path(current_user)
+      redirect_to color_path(@color)
       flash.notice = "#{@color.name} has been updated."
     else
       flash.notice = "Colors cannot be duplicated."
@@ -45,11 +43,10 @@ class ColorsController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:user_id])
     color = Color.find(params[:id])
     color.destroy
-    redirect_to user_path(user)
-    flash.notice = "#{color.name} has been removed chromotherapy"
+    redirect_to user_path(current_user)
+    flash.notice = "#{color.name} has been removed from chromotherapy"
   end
 
   private 

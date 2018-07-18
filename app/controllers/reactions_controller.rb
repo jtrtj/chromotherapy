@@ -6,11 +6,13 @@ class ReactionsController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @reaction = Reaction.new
   end
 
   def create
-    @reaction = current_user.reactions.create!(reaction_params)
+    @user = User.find(params[:user_id])
+    @reaction = @user.reactions.create!(reaction_params)
     if @reaction.save
       redirect_to user_path(current_user)
       flash.notice = "#{@reaction.word} has been added to chromotherapy."

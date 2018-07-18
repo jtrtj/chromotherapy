@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+#add a nother user
 describe 'an admin' do
   before(:each) do
     @admin = User.create(email: 'sdfg', name: 'uytrew', password: 'trew', role: 1)
@@ -38,7 +39,7 @@ describe 'an admin' do
     expect(page).to_not have_content(spring_green.hex_value)
   end
 
-  xit 'can edit colors in db' do
+  it 'can edit colors in db' do
     spring_green = @admin.colors.create!(name: 'Spring Green', hex_value: '#00FF7F')
     new_color_name = 'GR8 COLOR'
     new_color_hex_value = '#FF1493'
@@ -65,7 +66,7 @@ describe 'an admin' do
     new_reaction_definition = 'feeling or showing pleasure or contentment.'
 
     visit new_user_reaction_path(@admin)
-    
+   
     fill_in :reaction_word, with: new_reaction_word
     fill_in :reaction_definition, with: new_reaction_definition
 
@@ -76,38 +77,37 @@ describe 'an admin' do
     expect(page).to have_content(new_reaction_definition)
   end
 
-  xit 'can delete reactions from db' do
+  it 'can delete reactions from db' do
     happy = @admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
-    # sad = @admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
+    sad = @admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
 
     visit user_path(@admin)
   
     click_link 'Delete'
 
-    save_and_open_page
     expect(current_path).to eq(user_path(@admin))
     expect(page).to_not have_content(happy.word)
     expect(page).to_not have_content(happy.definition)
   end
 
-  xit 'can edit reactions in db' do
-    admin = Admin.create!(name: 'John', screen_name: 'jtr', email: 'jtr022@gmail.com', password: 'cool')
+  it 'can edit reactions in db' do
+    admin = User.create!(name: 'John', email: 'jtr022@gmail.com', password: 'cool', role: 1)
     happy = admin.reactions.create!(word: 'Happy', definition: 'feeling or showing pleasure or contentment.')
     sad = admin.reactions.create!(word: 'Sad', definition: 'feeling or showing sorrow; unhappy.')
     new_reaction_word = 'Overjoyed'
     new_reaction_definition = 'extremely happy.'
 
-    visit admin_path(admin)
+    visit user_path(admin)
 
     within "#reaction-#{happy.id}" do
-      click_on 'Edit'
+      click_link 'Edit'
     end
     
     fill_in :reaction_word, with: new_reaction_word
     fill_in :reaction_definition, with: new_reaction_definition
     click_on 'Update Reaction'
 
-    expect(current_path).to eq(admin_path(admin))
+    expect(current_path).to eq(user_path(admin))
     expect(page).to have_content(new_reaction_word)
     expect(page).to have_content(new_reaction_definition)
     expect(page).to_not have_content('Happy')
