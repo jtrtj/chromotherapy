@@ -3,7 +3,7 @@ class Color < ApplicationRecord
   validates :hex_value, presence: true, uniqueness: { case_sensitive: false }
 
   belongs_to :user
-  has_many :surveys
+  has_many :surveys, dependent: :destroy
   has_many :reactions, through: :surveys
 
   def self.pick_two

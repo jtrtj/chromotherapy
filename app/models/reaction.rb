@@ -3,6 +3,6 @@ class Reaction < ApplicationRecord
   validates :word, presence: true, uniqueness: { case_sensitive: false }
 
   belongs_to :user
-  has_many :surveys
+  has_many :surveys, dependent: :destroy
   has_many :colors, through: :surveys
 end
