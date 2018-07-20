@@ -1,7 +1,7 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container has-text-centered">
-        <% if current_user.id == @user.id %>
+        <% if current_user && current_user.id == @user.id %>
           <h1 class="title">
           Welcome, <%=@user.name%>!
           </h1>
@@ -32,7 +32,7 @@
         <tr id="color-<%= color.id %>">
           <td><%= link_to color.name, color_path(color)%></td>
           <td bgcolor="<%= color.hex_value%>"><%= color.hex_value %></td>
-          <% if current_user.id == @user.id %>
+          <% if current_user && current_user.id == @user.id %>
             <td><%= link_to 'delete', user_color_path(@user, color), method: 'DELETE', data: {confirm: "Really delete #{color.name}"} %></td>
             <td><%= link_to 'edit', edit_user_color_path(@user, color), method: 'GET' %></td>
           <% end %>
@@ -68,7 +68,7 @@
         <tr id="reaction-<%= reaction.id %>">
           <td><%= link_to reaction.word, reaction_path(reaction)%></td>
           <td><%= reaction.definition%></td>
-          <% if current_user.id == @user.id %>
+          <% if current_user && current_user.id == @user.id %>
             <td><%= link_to 'delete', user_reaction_path(@user, reaction), method: 'DELETE'%></td>
             <td><%= link_to 'edit', edit_user_reaction_path(@user, reaction), method: 'GET' %></td>
           <% end %>

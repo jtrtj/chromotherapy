@@ -5,7 +5,7 @@
           <section class="column is-6 is-offset-4">
             <h1 class="title"><%= @color.name %></h1>
             <p class="sub-title"><%= @color.hex_value %></p>
-            <p class="subtitle">added by: <%= link_to @color.user.name, user_path(@color.user)%></p>
+            <p class="subtitle">added by: <%= link_to @color.user.name, user_path(@color.user) %></p>
           </section>
           <section class="column is-4 is-offset-4">
             <%= render partial: 'box'%>
