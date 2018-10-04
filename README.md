@@ -1,24 +1,8 @@
-# README
+# Chromotherapy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The first web app I designed on my own with Rails. Its purpose is to record
+users’ emotional reactions to colors in a database. Users log on and expose 
+themselves to specific shades then complete surveys with their reactions.
+Admin users have access to the data gathered by these surveys
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I used Rails, HTML and CSS to create this web app.
