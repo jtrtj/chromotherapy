@@ -5,4 +5,4 @@ users’ emotional reactions to colors in a database. Users log on and expose
 themselves to specific shades then complete surveys with their reactions.
 Admin users have access to the data gathered by these surveys
 
-I used Rails, HTML and CSS to create this web app.
+I used Ruby, Rails, HTML and CSS.
